@@ -149,7 +149,7 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Blob storage linked service using blob storage",
+				"description": "Blob storage linked service using key vault",
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
