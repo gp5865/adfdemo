@@ -1,0 +1,18 @@
+{
+	"name": "linkedservice_BlobStorage_KV",
+	"properties": {
+		"description": "Blob storage linked service using blob storage",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "linkedservice_kv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "secret-priyanushstorageaccount"
+			}
+		}
+	}
+}
