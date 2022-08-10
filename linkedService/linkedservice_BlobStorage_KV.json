@@ -1,7 +1,7 @@
 {
 	"name": "linkedservice_BlobStorage_KV",
 	"properties": {
-		"description": "Blob storage linked service using blob storage",
+		"description": "Blob storage linked service using key vault",
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
