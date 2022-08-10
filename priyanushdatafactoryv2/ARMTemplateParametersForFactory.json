@@ -7,6 +7,12 @@
 		},
 		"Blob_linkedservice_connectionString": {
 			"value": ""
+		},
+		"linkedservice_kv_properties_typeProperties_baseUrl": {
+			"value": "https://KV-PRIYANUSH.vault.azure.net/"
+		},
+		"linkedservice_BlobStorage_KV_properties_typeProperties_connectionString_secretName": {
+			"value": "secret-priyanushstorageaccount"
 		}
 	}
 }

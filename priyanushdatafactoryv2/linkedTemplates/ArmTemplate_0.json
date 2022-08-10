@@ -10,6 +10,14 @@
 		"Blob_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Blob_linkedservice'"
+		},
+		"linkedservice_kv_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://KV-PRIYANUSH.vault.azure.net/"
+		},
+		"linkedservice_BlobStorage_KV_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "secret-priyanushstorageaccount"
 		}
 	},
 	"variables": {
@@ -25,6 +33,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('Blob_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedservice_kv')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('linkedservice_kv_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
@@ -95,6 +116,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
+					"firstRowAsHeader": false,
 					"quoteChar": "\""
 				},
 				"schema": [
@@ -120,6 +142,29 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Blob_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkedservice_BlobStorage_KV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Blob storage linked service using blob storage",
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "linkedservice_kv",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('linkedservice_BlobStorage_KV_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkedservice_kv')]"
 			]
 		},
 		{
