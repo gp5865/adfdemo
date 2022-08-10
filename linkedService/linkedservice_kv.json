@@ -1,0 +1,10 @@
+{
+	"name": "linkedservice_kv",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://KV-PRIYANUSH.vault.azure.net/"
+		}
+	}
+}
